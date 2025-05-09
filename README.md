@@ -5,16 +5,16 @@ This project contains Selenium-based automation scripts for web interactions.
 ## Prerequisites
 
 - Python 3.x
-- Chrome/Firefox browser (depending on your setup)
+- Chrome/Firefox browser
 - WebDriver for your browser
-- Git (for version control)
+- Git
 
 ## Installation
 
 1. Clone the repository:
 ```bash
-git clone <repository-url>
-cd <project-directory>
+git clone https://github.com/rafael-calixto1/zte-bots
+cd zte-bots
 ```
 
 2. Create and activate a virtual environment (recommended):
@@ -47,36 +47,8 @@ LOG_LEVEL=INFO
 - `670V9_reset.python`: Reset functionality implementation
 - `requirements.txt`: Python package dependencies
 - `selenium-env/`: Virtual environment directory
-- `.gitignore`: Git ignore rules for the project
 - `.env`: Environment variables (not tracked in git)
-
-## Version Control
-
-The project uses Git for version control. The `.gitignore` file is configured to exclude:
-- Python cache and compiled files
-- Virtual environment directories
-- Environment files (`.env`)
-- IDE-specific files
-- Selenium driver logs
-- Testing and coverage files
-
-Make sure to never commit sensitive information or environment files to the repository.
 
 ## Usage
 
 [Add specific usage instructions for your scripts here]
-
-## Dependencies
-
-The project uses the following main dependencies:
-- Selenium 4.32.0
-- WebSocket Client
-- Various supporting libraries (see requirements.txt for full list)
-
-## Contributing
-
-[Add contribution guidelines if applicable]
-
-## License
-
-[Add license information] 

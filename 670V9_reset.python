@@ -1,0 +1,80 @@
+from selenium import webdriver
+from selenium.webdriver.common.by import By
+from selenium.webdriver.firefox.service import Service
+from selenium.webdriver.firefox.options import Options
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+
+# Configurações
+device_url = "http://192.168.1.1"
+username = "admin"
+password = "210204"
+config_file_path = "/home/rafael/Desktop/NOC/roteadores/ZTE-F670LV9.0/670config.bin"
+
+# Configuração do GeckoDriver para Firefox
+options = Options()
+# options.add_argument('--headless')  # Execute sem abrir o navegador (opcional)
+service = Service("/usr/bin/geckodriver")
+driver = webdriver.Firefox(service=service, options=options)
+
+try:
+    print("Acessando o roteador...")
+    driver.get(device_url)
+
+    print("Realizando login...")
+    WebDriverWait(driver, 10).until(
+        EC.presence_of_element_located((By.ID, "Frm_Username"))
+    ).send_keys(username)
+    driver.find_element(By.ID, "Frm_Password").send_keys(password)
+    driver.find_element(By.ID, "LoginId").click()
+
+    print("Clicando em 'Gerência & Diagnóstico'...")
+    WebDriverWait(driver, 10).until(
+        EC.element_to_be_clickable((By.ID, "mgrAndDiag"))
+    ).click()
+
+    print("Navegando para 'Administração de Sistema'...")
+    WebDriverWait(driver, 10).until(
+        EC.element_to_be_clickable((By.ID, "devMgr"))
+    ).click()
+
+    print("Exibindo mais opções...")
+    WebDriverWait(driver, 10).until(
+        EC.element_to_be_clickable((By.ID, "scrollRightBtn"))
+    ).click()
+
+    print("Abrindo 'Gerenciamento de configuração padrão'...")
+    WebDriverWait(driver, 10).until(
+        EC.element_to_be_clickable((By.ID, "ConfigMgr"))
+    ).click()
+
+    print("Expandindo as opções de 'Restaurar configuração padrão'...")
+    WebDriverWait(driver, 10).until(
+        EC.element_to_be_clickable((By.ID, "DefConfUploadBar"))
+    ).click()
+
+    print("Selecionando o arquivo de configuração...")
+    file_input = WebDriverWait(driver, 10).until(
+        EC.presence_of_element_located((By.ID, "DefCfgUpload"))
+    )
+    file_input.send_keys(config_file_path)
+
+    print("Iniciando a restauração...")
+    WebDriverWait(driver, 10).until(
+        EC.element_to_be_clickable((By.ID, "upload"))
+    ).click()
+
+    print("Confirmando a restauração...")
+    WebDriverWait(driver, 10).until(
+        EC.element_to_be_clickable((By.ID, "msgconfirmb"))
+    ).click()
+
+    print("Restauração de configuração concluída com sucesso.")
+
+except Exception as e:
+    print(f"Erro: {e}")
+
+finally:
+    print("Fechando o navegador...")
+    driver.quit()
+

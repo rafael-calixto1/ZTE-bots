@@ -49,6 +49,3 @@ LOG_LEVEL=INFO
 - `selenium-env/`: Virtual environment directory
 - `.env`: Environment variables (not tracked in git)
 
-## Usage
-
-[Add specific usage instructions for your scripts here]

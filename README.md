@@ -1,7 +1,6 @@
 # Selenium Automation Project
 
-This project contains Selenium-based automation scripts for web interactions.
-
+This project automates configuration and reset operations for ZTE network routers using Python and Selenium WebDriver. It includes scripts to log in to router interfaces, navigate administrative panels, and perform configuration file uploads or resets—making it ideal for IT automation and remote device management.
 ## Prerequisites
 
 - Python 3.x
